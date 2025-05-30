@@ -1,0 +1,6 @@
+@ManoelAPI_HostAddress = http://localhost:5251
+
+GET {{ManoelAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManoelAPI", "ManoelAPI\ManoelAPI.csproj", "{A43B918F-62F3-452D-AA65-0D0AF4697A71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManoelAPI.Tests", "ManoelAPI.Tests\ManoelAPI.Tests.csproj", "{94E61843-ECB3-4A31-8530-C611F73C12E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A43B918F-62F3-452D-AA65-0D0AF4697A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A43B918F-62F3-452D-AA65-0D0AF4697A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A43B918F-62F3-452D-AA65-0D0AF4697A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A43B918F-62F3-452D-AA65-0D0AF4697A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94E61843-ECB3-4A31-8530-C611F73C12E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E61843-ECB3-4A31-8530-C611F73C12E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E61843-ECB3-4A31-8530-C611F73C12E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E61843-ECB3-4A31-8530-C611F73C12E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

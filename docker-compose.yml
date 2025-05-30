@@ -1,0 +1,29 @@
+﻿version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Default=Server=db;Database=manoeldb;User Id=sa;Password=1234@Senha!;TrustServerCertificate=True;
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-lts
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=1234@Senha!
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - dbdata:/var/opt/mssql
+
+volumes:
+  dbdata:
