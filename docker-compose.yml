@@ -14,7 +14,7 @@ services:
       - ConnectionStrings__Default=Server=db;Database=manoeldb;User Id=sa;Password=1234@Senha!;TrustServerCertificate=True;
 
   db:
-    image: mcr.microsoft.com/mssql/server:2022-lts
+    image: mcr.microsoft.com/mssql/server:2022-latest
     restart: always
     environment:
       - ACCEPT_EULA=Y
