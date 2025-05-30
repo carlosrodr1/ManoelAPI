@@ -1,17 +1,57 @@
-# ManoelAPI - Microserviço de Empacotamento
+#  ManoelAPI - Microserviço de Empacotamento
 
-Microserviço desenvolvido em .NET 8, responsável por receber pedidos e calcular a melhor forma de empacotar produtos em caixas. Possui autenticação via JWT, persistência em SQL Server e execução com Docker.
+Microserviço desenvolvido em **.NET 8**, responsável por receber pedidos e calcular a melhor forma de empacotar produtos em caixas.  
+Conta com **autenticação JWT**, persistência em **SQL Server** e execução via **Docker**.
 
-Pré-requisitos: é necessário ter o Docker instalado
+##  Pré-requisitos
 
-Como executar: clone o repositório com `git clone https://github.com/carlosrodr1/ManoelAPI.git` e acesse a pasta com `cd manoelapi`. Depois, suba os containers com `docker compose up --build`. A aplicação estará disponível em `http://localhost:8080/swagger`.
+- [Docker](https://www.docker.com/) instalado na máquina.
 
-Como testar: registre um usuário usando o endpoint `POST /api/registrar`, depois faça login em `POST /api/login` e copie o token JWT retornado. 
+##  Como executar
 
-No Swagger, clique em "Authorize" e cole o token no formato `Bearer TOKEN`. Agora você pode testar o endpoint `POST /api/pedidos/embalar`.
+```bash
+git clone https://github.com/carlosrodr1/ManoelAPI.git
+cd manoelapi
+docker compose up --build
+```
 
-Banco de Dados: usa SQL Server 2022, com as migrations aplicadas automaticamente no startup.
+Acesse o Swagger em:  
+ [http://localhost:8080/swagger](http://localhost:8080/swagger)
 
-Testes unitários: podem ser executados com o comando `dotnet test` (utilizando xUnit).
+##  Como testar
 
-👨‍💻 Desenvolvido por Carlos Rodrigues
+1. Registre um usuário:  
+   `POST /api/registrar`
+
+2. Faça login:  
+   `POST /api/login`  
+    Copie o token JWT retornado
+
+3. Autorize no Swagger:  
+   Clique em **Authorize** e cole o token no formato:  
+   ```
+   Bearer SEU_TOKEN
+   ```
+
+4. Teste o endpoint de empacotamento:  
+   `POST /api/pedidos/embalar`
+
+##  Banco de Dados
+
+- Utiliza **SQL Server 2022**
+- Migrations aplicadas automaticamente na inicialização da aplicação
+
+##  Testes
+
+Execute os testes unitários com:
+
+```bash
+dotnet test
+```
+
+> Os testes utilizam **xUnit**.
+
+##  Desenvolvido por
+
+**Carlos Rodrigues**  
+[GitHub @carlosrodr1](https://github.com/carlosrodr1)
