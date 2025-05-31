@@ -1,10 +1,14 @@
-﻿using ManoelAPI.Services;
+﻿using System.Text.Json.Serialization;
 
 namespace ManoelAPI.Models
 {
     public class EmpacotamentoResponse
     {
+        [JsonPropertyName("pedido_id")]
         public Guid PedidoId { get; set; }
-        public List<CaixaEmpacotada> Caixas { get; set; } = new();
+
+        [JsonPropertyName("caixas")]
+        public List<CaixaEmpacotadaResponse> Caixas { get; set; } = new();
+
     }
 }

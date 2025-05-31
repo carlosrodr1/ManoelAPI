@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ManoelAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250530132428_InitialCreate")]
+    [Migration("20250531024426_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -42,20 +42,13 @@ namespace ManoelAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Altura")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<decimal>("Comprimento")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<decimal>("Largura")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
                     b.Property<Guid?>("PedidoId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProdutoId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "produto_id");
 
                     b.HasKey("Id");
 
@@ -90,6 +83,36 @@ namespace ManoelAPI.Migrations
                     b.HasOne("ManoelAPI.Models.Pedido", null)
                         .WithMany("Produtos")
                         .HasForeignKey("PedidoId");
+
+                    b.OwnsOne("ManoelAPI.Models.Dimensoes", "Dimensoes", b1 =>
+                        {
+                            b1.Property<Guid>("ProdutoId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<decimal>("Altura")
+                                .HasPrecision(10, 2)
+                                .HasColumnType("decimal(10,2)");
+
+                            b1.Property<decimal>("Comprimento")
+                                .HasPrecision(10, 2)
+                                .HasColumnType("decimal(10,2)");
+
+                            b1.Property<decimal>("Largura")
+                                .HasPrecision(10, 2)
+                                .HasColumnType("decimal(10,2)");
+
+                            b1.HasKey("ProdutoId");
+
+                            b1.ToTable("Produtos");
+
+                            b1.HasAnnotation("Relational:JsonPropertyName", "dimensoes");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ProdutoId");
+                        });
+
+                    b.Navigation("Dimensoes")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ManoelAPI.Models.Pedido", b =>

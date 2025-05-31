@@ -21,16 +21,35 @@ namespace ManoelAPI.Controllers
         public IActionResult EmbalarPedidos([FromBody] PedidoRequest request)
         {
             var resposta = new List<EmpacotamentoResponse>();
+            if (request?.Pedidos == null || !request.Pedidos.Any())
+                return BadRequest("A requisição deve conter pelo menos um pedido.");
 
             foreach (var pedido in request.Pedidos)
             {
-                var caixas = _empacotador.Empacotar(pedido);
-                resposta.Add(new EmpacotamentoResponse
+                try
                 {
-                    PedidoId = pedido.Id,
-                    Caixas = caixas
-                });
+                    var caixasInternas = _empacotador.Empacotar(pedido);
+
+                    var caixasFormatadas = caixasInternas.Select(c => new CaixaEmpacotadaResponse
+                    {
+                        CaixaId = c.Caixa?.Nome,
+                        Produtos = c.Produtos.Select(p => p.ProdutoId).ToList(),
+                        Observacao = c.Observacao
+                    }).ToList();
+
+
+                    resposta.Add(new EmpacotamentoResponse
+                    {
+                        PedidoId = pedido.Id,
+                        Caixas = caixasFormatadas
+                    });
+                }
+                catch
+                {
+                    continue;
+                }
             }
+
 
             return Ok(resposta);
         }

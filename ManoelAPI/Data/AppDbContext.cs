@@ -17,9 +17,12 @@ namespace ManoelAPI.Data
 
             modelBuilder.Entity<Produto>(entity =>
             {
-                entity.Property(p => p.Altura).HasPrecision(10, 2);
-                entity.Property(p => p.Largura).HasPrecision(10, 2);
-                entity.Property(p => p.Comprimento).HasPrecision(10, 2);
+                entity.OwnsOne(p => p.Dimensoes, dimensoes =>
+                {
+                    dimensoes.Property(d => d.Altura).HasPrecision(10, 2);
+                    dimensoes.Property(d => d.Largura).HasPrecision(10, 2);
+                    dimensoes.Property(d => d.Comprimento).HasPrecision(10, 2);
+                });
             });
         }
     }
